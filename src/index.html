@@ -22,26 +22,17 @@
         <p class="eyebrow">MADE HERE. SHARED HERE.</p>
         <h1 id="hero-title">つくったものを、<br><span>つなごう。</span></h1>
         <p class="hero-copy">あなたのアプリから、誰かのアプリへ。<br>コミュニティの作品に出会う、小さな紹介スペース。</p>
-        <a class="button" href="#embed">自分のアプリに設置する <span aria-hidden="true">↗</span></a>
+        <button class="button" type="button" data-open-setup aria-haspopup="dialog" aria-controls="setup-dialog">自分のアプリに設置する <span aria-hidden="true">↗</span></button>
       </div>
       <div class="hero-note" aria-hidden="true"><span class="note-top">FROM ONE IDEA</span><div class="connection"><span>APP</span><b>↔</b><span>APP</span></div><span class="note-bottom">TO THE NEXT DISCOVERY.</span></div>
     </section>
 
     <section id="embed" class="setup" aria-labelledby="setup-title">
-      <div class="section-heading"><p class="eyebrow">01 / CONNECT</p><h2 id="setup-title">アプリに、出会いの入り口を。</h2><p>登録済みのアプリを選んで、コードをコピー。<br>他の作品がランダムで1件表示されます。</p></div>
+      <div class="section-heading"><p class="eyebrow">01 / CONNECT</p><h2 id="setup-title">アプリに、出会いの入り口を。</h2><p>画面下の小さなスペースから、新しい作品へ。<br>掲載中の広告をデモで見てみましょう。</p></div>
       <div class="setup-grid">
-        <div class="setup-controls">
-          <label for="app-select">設置するアプリ</label>
-          <select id="app-select" disabled><option>読み込み中…</option></select>
-          <p id="setup-status" class="help" role="status"></p>
-          <label class="position-option"><input id="fixed-position" type="checkbox" checked disabled>画面下に固定する</label>
-          <div class="code-heading"><label for="embed-code">埋め込みコード</label><button id="copy-code" class="small-button" disabled>コピー</button></div>
-          <textarea id="embed-code" readonly spellcheck="false" aria-describedby="code-help" placeholder="登録済みのアプリを選ぶと表示されます"></textarea>
-          <p id="code-help" class="help">高さ72pxの横長バナーです。固定する場合はbodyの末尾に設置してください。固定フッターやボトムナビがあるアプリは、重ならないように位置と余白を調整してください。</p>
-          <p id="copy-status" class="help" role="status"></p>
-        </div>
         <div class="preview-panel"><div class="preview-title"><span class="live-dot"></span>掲載広告のデモ<button id="reload-preview" class="small-button" disabled>再抽選 ↻</button></div><div class="app-mock"><div class="app-mock-header"><span>あなたのアプリ</span><span aria-hidden="true">•••</span></div><div class="app-mock-content" aria-hidden="true"><span class="mock-caption">いつもの画面は、そのままに。</span><div class="mock-row"></div><div class="mock-row short"></div><div class="mock-tile"></div></div><div id="preview" class="preview"><p class="help">掲載中の広告を読み込んでいます。</p></div></div><p class="help preview-help">デモでは掲載中の全作品からランダム表示します。</p></div>
       </div>
+      <div class="setup-action"><button class="button" type="button" data-open-setup aria-haspopup="dialog" aria-controls="setup-dialog">自分のアプリに設置する <span aria-hidden="true">↗</span></button></div>
     </section>
 
     <section class="join" aria-labelledby="join-title">
@@ -51,6 +42,20 @@
     </section>
     <noscript><p class="demo-banner">広告のプレビューと埋め込みコードの生成にはJavaScriptを有効にしてください。</p></noscript>
   </main>
+  <dialog id="setup-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-heading"><h2 id="dialog-title">自分のアプリに設置する</h2><form method="dialog"><button class="small-button" type="submit">閉じる</button></form></div>
+    <p class="help">設置するアプリを選んで、コードをコピーしてください。実際の配信では、そのアプリ自身の広告を除外します。</p>
+    <div class="setup-controls">
+      <label for="app-select">設置するアプリ</label>
+      <select id="app-select" autofocus disabled><option>読み込み中…</option></select>
+      <p id="setup-status" class="help" role="status"></p>
+      <label class="position-option"><input id="fixed-position" type="checkbox" checked disabled>画面下に固定する</label>
+      <div class="code-heading"><label for="embed-code">埋め込みコード</label><button id="copy-code" class="small-button" disabled>コピー</button></div>
+      <textarea id="embed-code" readonly spellcheck="false" aria-describedby="code-help" placeholder="登録済みのアプリを選ぶと表示されます"></textarea>
+      <p id="code-help" class="help">高さ72pxの横長バナーです。固定する場合はbodyの末尾に設置してください。固定フッターやボトムナビがあるアプリは、重ならないように位置と余白を調整してください。</p>
+      <p id="copy-status" class="help" role="status"></p>
+    </div>
+  </dialog>
   <footer class="site-footer wrap"><span class="brand">SIW<span>AD</span></span><p>学校のコミュニティで、作品を紹介し合うために。<br>ログイン不要・独自の表示／クリック計測なし。</p><a class="text-link" href="https://github.com/SIW-GW/siw-ad" target="_blank" rel="noopener noreferrer">Source ↗</a></footer>
 </body>
 </html>

@@ -11,7 +11,12 @@ const status = document.querySelector('#setup-status');
 const copyStatus = document.querySelector('#copy-status');
 const fixed = document.querySelector('#fixed-position');
 const previewHelp = document.querySelector('.preview-help');
+const setupDialog = document.querySelector('#setup-dialog');
 let feed;
+
+for (const button of document.querySelectorAll('[data-open-setup]')) {
+  button.addEventListener('click', () => setupDialog.showModal());
+}
 
 function updatePreview() {
   const ad = selectAd(feed, null);
@@ -28,16 +33,16 @@ function updatePreview() {
   preview.replaceChildren(slot);
   previewHelp.textContent = 'デモでは掲載中の全作品からランダム表示します。実際の配信では自分の作品は除外されます。';
   reload.disabled = feed.ads.length < 2;
+}
+
+function updateCode() {
   code.value = embedCode(base, select.value, { fixed: fixed.checked });
   copyStatus.textContent = '';
 }
 
-select.addEventListener('change', updatePreview);
+select.addEventListener('change', updateCode);
 reload.addEventListener('click', updatePreview);
-fixed.addEventListener('change', () => {
-  code.value = embedCode(base, select.value, { fixed: fixed.checked });
-  copyStatus.textContent = '';
-});
+fixed.addEventListener('change', updateCode);
 copy.addEventListener('click', async () => {
   try {
     await navigator.clipboard.writeText(code.value);
@@ -69,8 +74,9 @@ try {
     copy.disabled = false;
     fixed.disabled = false;
     status.textContent = `掲載中 ${feed.ads.length}作品。広告を見る人のログインは不要です。`;
-    updatePreview();
+    updateCode();
   }
+  updatePreview();
 } catch (error) {
   console.error('サイトデータの読み込みに失敗しました。', error);
   select.replaceChildren(new Option('読み込みに失敗しました', ''));
