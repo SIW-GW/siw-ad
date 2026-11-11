@@ -1,0 +1,8 @@
+{
+  "id": "livefx",
+  "name": "LiveFx",
+  "description": "あなたの参加を、光に ライブパフォーマンス向けのインタラクティブシステム",
+  "url": "https://livefx.siw.ac.jp/",
+  "image": "images/livefx.png",
+  "enabled": true
+}
