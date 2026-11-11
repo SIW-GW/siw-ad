@@ -1,0 +1,8 @@
+{
+  "id": "liflon",
+  "name": "Liflon",
+  "description": "いいねで動画の公開時間が延びるショート動画SNSです。",
+  "url": "https://liflon-app.vercel.app/",
+  "image": "images/liflon.png",
+  "enabled": true
+}
