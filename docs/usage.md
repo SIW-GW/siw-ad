@@ -1,5 +1,9 @@
 # 登録・設置・運用ガイド
 
+公開サイト: https://siw-gw.github.io/siw-ad/
+
+このリポジトリではGitHub Actions方式のPagesを有効化済み。初回掲載作品はQHandで、自分以外の作品が登録されるまでQHandの広告枠は候補なしとなる。
+
 ## 1. まず動作を試す
 
 READMEの手順でnvmを初期化して`nvm use`し、以下を実行する。
