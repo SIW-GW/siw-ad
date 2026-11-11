@@ -12,9 +12,13 @@ export function renderAd(container, ad, base, { headingTag = 'h1' } = {}) {
   fallback.className = 'image-fallback';
   fallback.textContent = 'SIW / COMMUNITY';
   fallback.setAttribute('aria-hidden', 'true');
+  fallback.hidden = true;
   const image = document.createElement('img');
   image.alt = '';
-  image.addEventListener('error', () => image.remove(), { once: true });
+  image.addEventListener('error', () => {
+    image.remove();
+    fallback.hidden = false;
+  }, { once: true });
   image.src = new URL(ad.image, base).href;
   media.append(fallback, image);
 
