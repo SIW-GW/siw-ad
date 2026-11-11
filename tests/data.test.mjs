@@ -51,6 +51,17 @@ test('自分を除外し、固定乱数の境界で各候補を選べる', () =>
   for (const number of [-1, 1, NaN]) assert.throws(() => selectAd(data, 'app-a', () => number));
 });
 
+test('デモは全掲載広告を候補にし、1件でも表示できる', () => {
+  const data = feed();
+  assert.equal(selectAd(data, null, () => 0).id, 'app-a');
+  assert.equal(selectAd(data, null, () => .4).id, 'app-b');
+  assert.equal(selectAd(data, null, () => .999999).id, 'app-c');
+  const single = { ads: [ad('app-a')] };
+  assert.equal(selectAd(single, null).id, 'app-a');
+  assert.equal(selectAd(single, 'app-a'), null);
+  assert.equal(selectAd({ ads: [] }, null), null);
+});
+
 test('データ取得はサイト配下・キャッシュ再利用なし・タイムアウト付き', async () => {
   const result = await loadFeed(new URL('https://example.com/siw-ad/'), { fetcher: async (url, options) => {
     assert.equal(url.href, 'https://example.com/siw-ad/ads.json');

@@ -18,7 +18,7 @@ export async function build({ root, catalogRoot = root, output = path.join(root,
   await writeFile(path.join(output, 'ads.json'), `${JSON.stringify(feed, null, 2)}\n`);
   await writeFile(path.join(output, 'site.json'), `${JSON.stringify({ demo })}\n`);
   await writeFile(path.join(output, '.nojekyll'), '');
-  for (const file of ['index.html', 'embed/index.html', 'assets/home.js', 'assets/embed.js', 'assets/style.css', 'ads.json']) {
+  for (const file of ['index.html', 'embed/index.html', 'assets/home.js', 'assets/embed.js', 'assets/card.js', 'assets/style.css', 'ads.json']) {
     await readFile(path.join(output, file));
   }
   return feed;

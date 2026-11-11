@@ -1,4 +1,5 @@
-import { loadFeed, embedCode } from './data.js';
+import { loadFeed, embedCode, selectAd } from './data.js';
+import { renderAd } from './card.js';
 
 const base = new URL('../', import.meta.url);
 const select = document.querySelector('#app-select');
@@ -9,17 +10,24 @@ const preview = document.querySelector('#preview');
 const status = document.querySelector('#setup-status');
 const copyStatus = document.querySelector('#copy-status');
 const fixed = document.querySelector('#fixed-position');
+const previewHelp = document.querySelector('.preview-help');
+let feed;
 
 function updatePreview() {
-  const url = new URL('embed/', base);
-  url.searchParams.set('app', select.value);
-  const frame = document.createElement('iframe');
-  frame.src = url.href;
-  frame.title = 'コミュニティのアプリ紹介プレビュー';
-  frame.width = '320';
-  frame.height = '72';
-  frame.referrerPolicy = 'no-referrer';
-  preview.replaceChildren(frame);
+  const ad = selectAd(feed, null);
+  const slot = document.createElement('div');
+  slot.className = 'slot';
+  if (ad) {
+    renderAd(slot, ad, base, { headingTag: 'h3' });
+  } else {
+    const message = document.createElement('p');
+    message.className = 'slot-message';
+    message.textContent = '現在掲載中の作品はありません';
+    slot.append(message);
+  }
+  preview.replaceChildren(slot);
+  previewHelp.textContent = 'デモでは掲載中の全作品からランダム表示します。実際の配信では自分の作品は除外されます。';
+  reload.disabled = feed.ads.length < 2;
   code.value = embedCode(base, select.value, { fixed: fixed.checked });
   copyStatus.textContent = '';
 }
@@ -46,7 +54,7 @@ try {
   if (!response.ok) throw new Error(`サイト設定の取得に失敗しました (${response.status})。`);
   const site = await response.json();
   document.querySelector('#demo-banner').hidden = !site.demo;
-  const feed = await loadFeed(base);
+  feed = await loadFeed(base);
   select.replaceChildren();
   if (feed.registeredAppIds.length === 0) {
     const option = new Option('登録済みのアプリはありません', '');
@@ -59,7 +67,6 @@ try {
     }
     select.disabled = false;
     copy.disabled = false;
-    reload.disabled = false;
     fixed.disabled = false;
     status.textContent = `掲載中 ${feed.ads.length}作品。広告を見る人のログインは不要です。`;
     updatePreview();
