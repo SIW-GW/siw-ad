@@ -1,0 +1,8 @@
+{
+  "id": "qhand",
+  "name": "QHand",
+  "description": "QHandは、情報を「手渡す」ためのWebアプリです。",
+  "url": "https://qhand.pages.dev/",
+  "image": "images/qhand.png",
+  "enabled": true
+}
