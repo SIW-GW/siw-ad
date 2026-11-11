@@ -1,0 +1,8 @@
+{
+  "id": "sample-campus",
+  "name": "Campus Notes（サンプル）",
+  "description": "キャンパスの日常をつなぐノート。動作確認用の架空の作品です。",
+  "url": "https://example.com/#campus",
+  "image": "images/campus.png",
+  "enabled": true
+}

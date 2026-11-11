@@ -1,0 +1,8 @@
+{
+  "id": "sample-orbit",
+  "name": "Orbit Tasks（サンプル）",
+  "description": "小さな目標を、毎日の軌道に。動作確認用の架空の作品です。",
+  "url": "https://example.com/#orbit",
+  "image": "images/orbit.png",
+  "enabled": true
+}

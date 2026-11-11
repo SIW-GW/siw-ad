@@ -1,0 +1,8 @@
+{
+  "id": "sample-palette",
+  "name": "Palette Lab（サンプル）",
+  "description": "アイデアにぴったりの色を見つけよう。動作確認用の架空の作品です。",
+  "url": "https://example.com/#palette",
+  "image": "images/palette.png",
+  "enabled": true
+}
